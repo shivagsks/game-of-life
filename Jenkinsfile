@@ -15,8 +15,7 @@ stage('Nexus_Deploy') {
 }
 
 stage('Ansible_Playbook') {
-	ansiblePlaybook extras: "BUILD_ID=${BUILD_ID}"
-	ansiblePlaybook inventory: '/home/ubuntu/inventory', playbook: 'playbook.yml'
+	ansiblePlaybook inventory: '/home/ubuntu/inventory', playbook: 'playbook.yml', extras: "BUILD_ID=${BUILD_ID}"
 	
 }
 
