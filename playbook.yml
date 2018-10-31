@@ -1,0 +1,45 @@
+---
+- hosts: webserver
+  become: true
+  tasks:
+  
+  - name: Install JDK
+    yum: name=java-1.8.0-openjdk state=present update_cache=yes
+      
+  - name: Install EPEL repo.
+    yum:
+      name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+      state: present
+
+  - name: Install tomcat
+    yum: name=tomcat state=present update_cache=yes
+
+
+  - name: Install tomcat webapps
+    yum: name=tomcat-webapps state=present
+
+  - name: Install tomcat admin-webapps
+    yum: 
+      name=tomcat-admin-webapps 
+      state=present
+
+  - name: Delete tomcat-users.xml
+    file:
+      path: /etc/tomcat/tomcat-users.xml
+      state: absent
+
+  - name: Copy tomcat-users.xml from Ansible Control Machine
+    copy:
+      src: tomcat-users.xml
+      dest: /etc/tomcat/
+
+  - name: Restart tomcat
+    service: name=tomcat state=restarted
+
+  - name: Copy artidacts from NEXUS
+    get_url:
+      url: http://54.191.210.253:8081/nexus/service/local/repositories/new/content/dev/dev/{{BUILD_ID}}/dev-{{BUILD_ID}}.war
+      dest: /usr/share/tomcat/webapps/
+      
+      
+    
