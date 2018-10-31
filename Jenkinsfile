@@ -7,7 +7,7 @@ input message: 'Please give your valuable input', parameters: [choice(choices: [
  stage('SonarQube analysis') {
     // requires SonarQube Scanner 2.8+
     def scannerHome =tool name: 'Sonar-Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-    withSonarQubeEnv('My SonarQube Server') {
+    withSonarQubeEnv('Sonar') {
       sh "${scannerHome}/bin/sonar-scanner"
 }
 }
