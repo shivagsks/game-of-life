@@ -1,12 +1,14 @@
 node('master') {
     stage('Checkout') {
     git 'https://github.com/arjunkundur/game-of-life.git'
+input message: 'Please give your valuable input', parameters: [choice(choices: ['Approved', 'Declined', 'Pause'], description: '', name: 'Input')]
 
 }
 stage('Build') {
      def mvnHome=tool name: 'maven', type: 'maven'
 	 def mvnCMD="${mvnHome}/bin/mvn"
 	 sh "${mvnCMD} install"
+input message: 'Please give your valuable input', parameters: [choice(choices: ['Approved', 'Declined', 'Pause'], description: '', name: 'Input')]
 
 }
 stage('Nexus_Deploy') {
