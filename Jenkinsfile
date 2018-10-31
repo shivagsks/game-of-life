@@ -4,6 +4,14 @@ node('master') {
 input message: 'Please give your valuable input', parameters: [choice(choices: ['Approved', 'Declined', 'Pause'], description: '', name: 'Input')]
 
 }
+ stage('SonarQube analysis') {
+    // requires SonarQube Scanner 2.8+
+    def scannerHome =tool name: 'Sonar-Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+    withSonarQubeEnv('My SonarQube Server') {
+      sh "${scannerHome}/bin/sonar-scanner"
+}
+}
+
 stage('Build') {
      def mvnHome=tool name: 'maven', type: 'maven'
 	 def mvnCMD="${mvnHome}/bin/mvn"
