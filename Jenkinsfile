@@ -5,9 +5,9 @@ stage('Checkout') {
 }
 
 stage('Build') {
-     def mvnHome=tool name: 'Maven', type: 'maven'
-	 def mvnCMD="${mvnHome}/bin/mvn"
-	 sh "${mvnCMD} install -DskipTests"
+    withMaven(maven: 'Maven') {
+    sh "mvn install -DskipTests"
+}
 }
 
 stage('Nexus_Deploy') {
