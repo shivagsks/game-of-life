@@ -1,6 +1,5 @@
 node('master') {
-def BUILD_ID = "10"
-	
+
 stage('Checkout') {
 	git 'https://github.com/arjunkundur/game-of-life.git'
 }
@@ -16,7 +15,7 @@ stage('Nexus_Deploy') {
 }
 
 stage('Ansible_Playbook') {
-	ansiblePlaybook extras: '$BUILD_ID', inventory: '/home/ubuntu/inventory', playbook: 'playbook.yml'
+	ansiblePlaybook extras: '-e BUILD_ID=${BUILD_ID}', inventory: '/home/ubuntu/inventory', playbook: 'playbook.yml'
 	
 }
 
