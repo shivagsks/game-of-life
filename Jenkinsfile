@@ -1,4 +1,7 @@
 node('master') {
+environment {
+  BUILD_ID = "$BUILD_ID"
+}
 
 stage('Checkout') {
 	git 'https://github.com/arjunkundur/game-of-life.git'
