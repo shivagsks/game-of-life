@@ -18,7 +18,9 @@ stage('Ansible_Playbook') {
 	ansiblePlaybook extras: '-e BUILD_ID=${BUILD_ID}', inventory: '/home/ubuntu/inventory', playbook: 'playbook.yml'
 	
 }
-
-
+stage('Application Status'){
+	echo http://34.209.226.14:8081/nexus/service/local/repositories/red/content/dev/dev/{{BUILD_ID}}/dev-{{BUILD_ID}}.war
+}
+	
 }
 
