@@ -14,7 +14,7 @@ stage('Nexus_Deploy') {
 }
 
 stage('Ansible_Playbook') {
-env.BUILD_ID = '10'
+def BUILD_ID = "10"
 	ansiblePlaybook inventory: '/home/ubuntu/inventory', playbook: 'playbook.yml'
 	
 }
