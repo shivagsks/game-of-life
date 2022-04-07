@@ -19,7 +19,7 @@
         <thucydides.version>0.9.268</thucydides.version>
         <jelastic.context>gameoflife</jelastic.context>
         <jelastic.environment>wakaleo</jelastic.environment>
-        <sonar.host.url>http://204.236.248.184:9000/</sonar.host.url>
+        <sonar.host.url>http://172.31.20.69:9000/</sonar.host.url>
         <sonar.login>ab508ca6d975b04f9c358d070eb105b8fef5353b</sonar.login>
     </properties>
 
