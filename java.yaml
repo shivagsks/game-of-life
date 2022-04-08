@@ -1,0 +1,5 @@
+ hosts: all
+ become: true
+ tasks:
+    name: Install JDK
+    yum: name=java-1.8.0-openjdk state=present  
